@@ -1,4 +1,4 @@
-package pro.sky.ListAndSets;
+package pro.sky.MnogoobrazieAndRealizaciya;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class EmployeeController {
     }
     @GetMapping(path = "/add")
     public Employee add(@RequestParam String firstName, @RequestParam String lastName){
-        return employeeService.add(firstName,lastName);
+        return employeeService.put(firstName,lastName);
 
     }
     @GetMapping(path = "/remove")

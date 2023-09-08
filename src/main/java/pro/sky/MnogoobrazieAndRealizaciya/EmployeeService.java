@@ -5,10 +5,7 @@ import pro.sky.MnogoobrazieAndRealizaciya.exceptions.EmployeeAlreadyAddedExcepti
 import pro.sky.MnogoobrazieAndRealizaciya.exceptions.EmployeeNotFoundException;
 import pro.sky.MnogoobrazieAndRealizaciya.exceptions.EmployeeStorageIsFullException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class EmployeeService {
@@ -45,9 +42,8 @@ public class EmployeeService {
         }
 
     }
-    public List<Employee> getAll(){
-        List<Employee>getAllEmployees = new ArrayList<>(employees.values());
-        return getAllEmployees;
+    public Collection<Employee> getAll(){
+        return Collections.unmodifiableCollection(employees.values());
 
     }
 }

@@ -19,18 +19,18 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     @GetMapping(path = "/add")
-    public Employee add(@RequestParam String firstName, @RequestParam String lastName){
-        return employeeService.put(firstName,lastName);
+    public Employee add(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int departmentNumber){
+        return employeeService.put(firstName,lastName,departmentNumber);
 
     }
     @GetMapping(path = "/remove")
-    public Employee remove(@RequestParam String firstName, @RequestParam String lastName){
-        return employeeService.remove(firstName,lastName);
+    public Employee remove(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int departmentNumber){
+        return employeeService.remove(firstName,lastName,departmentNumber);
     }
 
     @GetMapping(path = "/find")
-    public Employee find(@RequestParam String firstName, @RequestParam String lastName){
-        return employeeService.find(firstName,lastName);
+    public Employee find(@RequestParam String firstName, @RequestParam String lastName,@RequestParam int departmentNumber){
+        return employeeService.find(firstName,lastName,departmentNumber);
     }
 
     @GetMapping

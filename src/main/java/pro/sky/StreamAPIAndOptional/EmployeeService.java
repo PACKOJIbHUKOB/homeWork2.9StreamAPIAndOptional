@@ -13,29 +13,34 @@ public class EmployeeService {
 
     private final Map<String,Employee> employees = new HashMap<>();
 
-    public Employee put(String firstName, String lastName) {
-        Employee newEmployee = new Employee(firstName, lastName);
-        if (employees.containsKey(newEmployee.getKey())){
+    public Employee put(String firstName, String lastName, int departmentNumber) {
+        Employee newEmployee = new Employee(firstName,lastName,departmentNumber);
+        String key = getKey(firstName,lastName,departmentNumber);
+        if (employees.containsKey(key)){
             throw new EmployeeAlreadyAddedException("данный сотрудник уже существует");
         }
         if (employees.size()>MaxSize){
             throw new EmployeeStorageIsFullException("Нет места для добавления сотрудника");
         }
-        employees.put(newEmployee.getKey(), newEmployee);
+        int newId= newEmployee.getID();
+        newEmployee.setCounter(newId+1);
+        employees.put(key, newEmployee);
         return newEmployee;
     }
 
-    public Employee remove(String firstName, String lastName) {
-        Employee removeEmployee = new Employee(firstName, lastName);
-        if (!employees.containsKey(removeEmployee.getKey())){
+    public Employee remove(String firstName, String lastName, int departmentNumber) {
+        Employee removeEmployee = new Employee(firstName,lastName,departmentNumber);
+        String key = getKey(firstName,lastName,departmentNumber);
+        if (!employees.containsKey(key)){
             throw new EmployeeNotFoundException("невозможно удалить,данный сотрудник не найден");}
-        employees.remove(removeEmployee.getKey());
+        employees.remove(key);
         return removeEmployee;
     }
 
-    public Employee find(String firstName, String lastName) {
-        Employee findEmployee = new Employee(firstName, lastName);
-        if (employees.containsKey(findEmployee.getKey())){
+    public Employee find(String firstName, String lastName, int departmentNumber) {
+        Employee findEmployee = new Employee(firstName,lastName,departmentNumber);
+        String key = getKey(firstName,lastName,departmentNumber);
+        if (employees.containsKey(key)){
             return findEmployee;}
         else {
             throw new EmployeeNotFoundException("данный сотрудник не найден");
@@ -44,6 +49,8 @@ public class EmployeeService {
     }
     public Collection<Employee> getAll(){
         return Collections.unmodifiableCollection(employees.values());
-
+    }
+    private String getKey(String firstName, String lastName, int departmentNumber){
+        return firstName+lastName+departmentNumber;
     }
 }

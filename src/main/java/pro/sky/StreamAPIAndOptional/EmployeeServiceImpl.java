@@ -1,4 +1,5 @@
 package pro.sky.StreamAPIAndOptional;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.StreamAPIAndOptional.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.StreamAPIAndOptional.exceptions.EmployeeNotFoundException;
@@ -7,7 +8,7 @@ import pro.sky.StreamAPIAndOptional.exceptions.EmployeeStorageIsFullException;
 import java.util.*;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
     private static final int MaxSize =10;
 
     private final Map<String,Employee> employees = new HashMap<>();
@@ -15,6 +16,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Employee put(String firstName, String lastName, int departmentNumber) {
         Employee newEmployee = new Employee(firstName,lastName,departmentNumber);
         String key = getKey(firstName,lastName,departmentNumber);
+        /*if (StringUtils.isAlphanumeric((CharSequence) newEmployee))
+            throw new RuntimeException("проверте правильность ввода");*/
         if (employees.containsKey(key)){
             throw new EmployeeAlreadyAddedException("данный сотрудник уже существует");
         }
@@ -27,6 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         return newEmployee;
     }
 
+    @Override
     public Employee remove(String firstName, String lastName, int departmentNumber) {
         Employee removeEmployee = new Employee(firstName,lastName,departmentNumber);
         String key = getKey(firstName,lastName,departmentNumber);
@@ -36,6 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         return removeEmployee;
     }
 
+    @Override
     public Employee find(String firstName, String lastName, int departmentNumber) {
         Employee findEmployee = new Employee(firstName,lastName,departmentNumber);
         String key = getKey(firstName,lastName,departmentNumber);
@@ -46,10 +51,11 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
 
     }
+    String getKey(String firstName, String lastName, int departmentNumber) {
+        return firstName + lastName + departmentNumber;
+    }
+    @Override
     public Collection<Employee> getAll(){
         return Collections.unmodifiableCollection(employees.values());
-    }
-    private String getKey(String firstName, String lastName, int departmentNumber){
-        return firstName+lastName+departmentNumber;
     }
 }

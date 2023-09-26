@@ -16,8 +16,8 @@ public class Employee {
 
 
     public Employee(String firstName, String lastName, int departmentNumber) {
-        this.firstName = chekFirstName(firstName);
-        this.lastName = chekLastName(lastName);
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.departmentNumber = departmentNumber;
         salaryEmployee = randomSalary();
         id=Counter;
@@ -82,19 +82,6 @@ public class Employee {
         double max = Math.floor(100000);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    public String chekFirstName (String firstName){
-       if(!StringUtils.isAlpha(firstName)||StringUtils.isBlank(firstName)){
-           throw new RuntimeException("имя введено не верно");}
-       return StringUtils.capitalize(firstName);
-
-       }
-    public String chekLastName (String lastName){
-        if (!StringUtils.isAlpha(lastName)||StringUtils.isBlank(lastName)){
-            throw new RuntimeException("фамилия введена не верно");}
-
-        return StringUtils.capitalize(lastName);
-    }
-
 
 
 }

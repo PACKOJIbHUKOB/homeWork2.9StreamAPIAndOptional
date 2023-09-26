@@ -12,9 +12,9 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/departments")
 public class DepartmentController {
-   private final DepartmentsService departmentService;
+   private final DepartmentService departmentService;
 
-    public DepartmentController(DepartmentsService departmentService) {
+    public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
 

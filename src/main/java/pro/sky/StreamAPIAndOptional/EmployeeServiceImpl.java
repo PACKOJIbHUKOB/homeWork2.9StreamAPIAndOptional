@@ -1,5 +1,4 @@
 package pro.sky.StreamAPIAndOptional;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.StreamAPIAndOptional.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.StreamAPIAndOptional.exceptions.EmployeeNotFoundException;
@@ -9,7 +8,7 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private static final int MaxSize =10;
+    private static final int MAX_SIZE =10;
 
     private final Map<String,Employee> employees = new HashMap<>();
     @Override
@@ -21,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employees.containsKey(key)){
             throw new EmployeeAlreadyAddedException("данный сотрудник уже существует");
         }
-        if (employees.size()>MaxSize){
+        if (employees.size()> MAX_SIZE){
             throw new EmployeeStorageIsFullException("Нет места для добавления сотрудника");
         }
         int newId= newEmployee.getID();

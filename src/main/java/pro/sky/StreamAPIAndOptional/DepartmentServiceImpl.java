@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class DepartmentServiceImpl implements DepartmentsService {
+public class DepartmentServiceImpl implements DepartmentService {
 
     private final EmployeeService employeeService;
 

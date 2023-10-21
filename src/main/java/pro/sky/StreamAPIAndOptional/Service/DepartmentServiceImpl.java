@@ -7,6 +7,9 @@ import pro.sky.StreamAPIAndOptional.exceptions.EmployeeNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
@@ -17,12 +20,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Employee> getEmployeesDepartments(Integer departmentsId) {
+    public Map<Integer, List<Employee>> getEmployeesDepartments(Integer departmentsId) {
 
         return employeeService.getAll()
                 .stream()
-                .filter(e -> e.getDepartmentNumber() == departmentsId)
-                .collect(Collectors.toList());
+                .filter (e -> departmentsId==null||e.getDepartmentNumber() == departmentsId)
+                .collect(groupingBy(Employee::getDepartmentNumber, toList()));
     }
     @Override
     public Employee getEmployeeMinSalary(Integer departmentsId) {
@@ -39,11 +42,5 @@ public class DepartmentServiceImpl implements DepartmentService {
                     .filter(e -> e.getDepartmentNumber() == departmentsId)
                     .max(Comparator.comparing(Employee::getSalaryEmployee))
                     .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник не найден"));
-    }
-    @Override
-    public Map<Integer, List<Employee>> getEmployees() {
-        return employeeService.getAll()
-                .stream()
-                .collect(Collectors.groupingBy(Employee::getDepartmentNumber));
     }
 }

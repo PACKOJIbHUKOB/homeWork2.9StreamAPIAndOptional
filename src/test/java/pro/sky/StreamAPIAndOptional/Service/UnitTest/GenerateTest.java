@@ -27,7 +27,7 @@ public class GenerateTest {
         return new Employee(FIRST_NAME_1,LAST_NAME_1,FIRST_DEPARTMENT_ID, SALARY_1);
     }
     public static Employee getEmployee2() {
-        return new Employee(FIRST_NAME_2, LAST_NAME_2, FIRST_DEPARTMENT_ID, SALARY_2);
+        return new Employee(FIRST_NAME_2, LAST_NAME_2,FIRST_DEPARTMENT_ID , SALARY_2);
     }
     public static Employee getEmployee3(){
         return new Employee(FIRST_NAME_3,LAST_NAME_3,LAST_DEPARTMENT_ID, SALARY_3);

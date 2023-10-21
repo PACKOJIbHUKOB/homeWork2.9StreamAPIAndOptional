@@ -45,9 +45,4 @@ public class EmployeeController {
         return employeeService.randomSalary();
     }
 
-
-
-
-
-
 }

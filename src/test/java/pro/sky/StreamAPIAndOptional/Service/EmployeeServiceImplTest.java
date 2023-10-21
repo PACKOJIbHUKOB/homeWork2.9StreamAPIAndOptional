@@ -1,23 +1,12 @@
 package pro.sky.StreamAPIAndOptional.Service;
 
-import org.assertj.core.internal.Arrays;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pro.sky.StreamAPIAndOptional.Employee;
-import pro.sky.StreamAPIAndOptional.Service.UnitTest.GenerateTest;
-import pro.sky.StreamAPIAndOptional.Service.UnitTest.GenerateTest.*;
 import pro.sky.StreamAPIAndOptional.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.StreamAPIAndOptional.exceptions.EmployeeNotFoundException;
 import pro.sky.StreamAPIAndOptional.exceptions.EmployeeStorageIsFullException;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
-import static com.fasterxml.jackson.databind.cfg.CoercionInputShape.Array;
-import static org.assertj.core.internal.Arrays.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 import static pro.sky.StreamAPIAndOptional.Service.UnitTest.GenerateTest.*;
 
 class EmployeeServiceImplTest {
@@ -168,20 +157,14 @@ class EmployeeServiceImplTest {
 
         Integer departmentId = FIRST_DEPARTMENT_ID;
         Integer lastdepartmentId = LAST_DEPARTMENT_ID;
-        Employee firstEmployee = getEmployee1();
-        Employee secondEmployee = getEmployee2();
-        Employee lastEmployee = getEmployee3();
-
-
         //подготовка ожидаемого результата
-        List<Employee> expectedEmployee = List.of(firstEmployee, secondEmployee,lastEmployee);
+        List<Employee> expectedEmployee =getAllEmployee() ;
         //начало теста
-        employeeService.put(FIRST_NAME_3, LAST_NAME_3, LAST_DEPARTMENT_ID, SALARY_3);
-        employeeService.put(FIRST_NAME_2, LAST_NAME_2, FIRST_DEPARTMENT_ID, SALARY_2);
-        employeeService.put(FIRST_NAME_1, LAST_NAME_1,FIRST_DEPARTMENT_ID, SALARY_1);
+        employeeService.put(firstName, lastName, departmentId, salaryEmployee);
+        employeeService.put(firstName2, lastName2, lastdepartmentId, salaryEmployee2);
+        employeeService.put(firstName3, lastName3, departmentId, salaryEmployee3);
         List<Employee> actualEmployee = employeeService.getAll();
-        assertEquals(expectedEmployee.stream().sorted(),actualEmployee.stream().sorted());
-
+        assertEquals(expectedEmployee, actualEmployee);
 
     }
 }

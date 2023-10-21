@@ -1,8 +1,10 @@
 package pro.sky.StreamAPIAndOptional;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 public class Employee {
-    private int id;
+//    private int id;
 
     private String firstName;
     private String lastName;
@@ -10,15 +12,15 @@ public class Employee {
 
     private double salaryEmployee;
 
-    private static int Counter;
+//    private static int Counter;
 
 
-    public Employee(String firstName, String lastName, int departmentNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Employee(String firstName, String lastName, int departmentNumber, double salaryEmployee) {
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.departmentNumber = departmentNumber;
-        salaryEmployee = randomSalary();
-        id=Counter;
+        this.salaryEmployee = salaryEmployee;
+//        id=Counter;
     }
 
     @Override
@@ -38,9 +40,9 @@ public class Employee {
         return firstName;
     }
 
-    public int getID() {
-        return id;
-    }
+//    public int getID() {
+//        return id;
+//    }
 
     public int getDepartmentNumber() {
         return departmentNumber;
@@ -52,9 +54,9 @@ public class Employee {
         return salaryEmployee;
     }
 
-    public void setCounter(int counter) {
-        this.Counter = counter;
-    }
+//    public void setCounter(int counter) {
+//        this.Counter = counter;
+//    }
 
     public void setSalaryEmployee(double salaryEmployee) {
         this.salaryEmployee = salaryEmployee;
@@ -68,20 +70,13 @@ public class Employee {
         return lastName;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    private static double randomSalary(){
-        double min = Math.ceil(1);
-        double max = Math.floor(100000);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-
 
 }
 

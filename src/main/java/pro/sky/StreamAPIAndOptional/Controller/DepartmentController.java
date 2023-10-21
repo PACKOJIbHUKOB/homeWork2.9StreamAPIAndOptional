@@ -1,9 +1,11 @@
-package pro.sky.StreamAPIAndOptional;
+package pro.sky.StreamAPIAndOptional.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.StreamAPIAndOptional.Service.DepartmentService;
+import pro.sky.StreamAPIAndOptional.Employee;
 
 import java.util.Collection;
 import java.util.List;

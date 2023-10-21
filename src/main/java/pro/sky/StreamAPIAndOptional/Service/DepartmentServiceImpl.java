@@ -1,6 +1,7 @@
-package pro.sky.StreamAPIAndOptional;
+package pro.sky.StreamAPIAndOptional.Service;
 
 import org.springframework.stereotype.Service;
+import pro.sky.StreamAPIAndOptional.Employee;
 import pro.sky.StreamAPIAndOptional.exceptions.EmployeeNotFoundException;
 
 import java.util.*;
